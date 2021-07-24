@@ -4,9 +4,12 @@ from colorama.ansi import Fore
 colorama.init(autoreset=True)
 
 class ProxyController:
-    def __init__(self):
+    def __init__(self,user_agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36'):
+        """User Agent : You can find it by typing my user agent into Google.\n
+        Default User Agent : Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36"""
         self.__proxysSuccess = []
         self.__proxysUnsuccess = []
+        self.userAgent = user_agent 
 
     def proxyControl(self,proxys,url="https://www.google.com",timeout=(3.05,27),details=True):
         """You should send the proxy list you want to check.\n
@@ -21,7 +24,7 @@ class ProxyController:
         URL = url
         TIMEOUT = timeout
         session = requests.Session()
-        session.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36'
+        session.headers['User-Agent'] = self.userAgent
         session.max_redirects = 300
         for proxy in proxys:
             self.__proxyCheck(proxy, session, URL, TIMEOUT, details)
@@ -29,7 +32,7 @@ class ProxyController:
         if len(self.__proxysSuccess) == 0 :
             print("None of the proxies you provided are working.")
         else :
-            return self.__proxysSuccess 
+            return self.__proxysSuccess
 
 
     def __proxyCheck(self, proxy, session, URL, TIMEOUT, details):
@@ -48,6 +51,7 @@ class ProxyController:
             except :
                 self.__proxysUnsuccess.append(proxy)
 
+
     def __exceptions(self,proxys,details,url,timeout):
         if type(proxys) != type([]) :
             raise Exception("The proxys parameter must be a list.")
@@ -59,5 +63,3 @@ class ProxyController:
             raise Exception("The details parameter must be true or false.")
         else :
             pass
-
-
