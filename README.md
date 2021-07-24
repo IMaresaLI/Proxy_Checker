@@ -15,11 +15,8 @@ pip3 install proxyCheck-mp
 from proxyChecker.proxyCheck import ProxyController
 ```
 ## 2-) proxyController class must be called.
-### prxCont = ProxyController() >> userAgent Parameter
-**Default Parameter ;**
-```
-Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36
-```
+### prxCont = ProxyController() 
+
 ## 3-) The proxyControl method bound to the proxyController class must be called.
 ### prxCont.proxyControl(proxys , url , timeout , details)
 
