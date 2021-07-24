@@ -2,6 +2,18 @@
 
 # How to use ?
 
+## 1-) Module Install and Import
+ - **Install Module**
+```
+pip install proxyCheck-mp
+```
+```
+pip3 install proxyCheck-mp
+```
+- **Import Module**
+```
+from proxyChecker.proxyCheck import ProxyController
+```
 ## 1-) proxyController class must be called.
 ### prxCont = ProxyController()
 
@@ -19,7 +31,7 @@ details -> Information message about whether the proxy is working or not. (True 
 ```
 prxCont = ProxyController()
 proxyList = ["0.0.0.0:18","1.1.1.1:80","11.11.11.11:8080"]
-prxConn.proxyControl(proxyList)
+prxCont.proxyControl(proxyList)
 #output _> 
 	The connection is unstable - 0.0.0.0:18
 	The connection is unstable - 1.1.1.1:80
@@ -27,7 +39,7 @@ prxConn.proxyControl(proxyList)
 	Proxy attempt finished.
 	None of the proxies you provided are working.
 
-prxConn.proxyControl(proxyList,detail=True)
+prxCont.proxyControl(proxyList,detail=True)
 #output2 _>
 	Proxy attempt finished.
 	None of the proxies you provided are working.
