@@ -27,7 +27,7 @@ prxConn.proxyControl(proxyList)
 	Proxy attempt finished.
 	None of the proxies you provided are working.
 
-pxConn.proxyControl(proxyList,detail=True)
+prxConn.proxyControl(proxyList,detail=True)
 #output2 _>
 	Proxy attempt finished.
 	None of the proxies you provided are working.
