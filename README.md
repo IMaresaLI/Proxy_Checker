@@ -19,7 +19,7 @@ details -> Information message about whether the proxy is working or not. (True 
 ```
 prxCont = ProxyController()
 proxyList = ["0.0.0.0:18","1.1.1.1:80","11.11.11.11:8080"]
-pxConn.proxyControl(proxyList)
+prxConn.proxyControl(proxyList)
 #output _> 
 	The connection is unstable - 0.0.0.0:18
 	The connection is unstable - 1.1.1.1:80
