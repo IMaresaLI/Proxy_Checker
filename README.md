@@ -14,10 +14,10 @@ pip3 install proxyCheck-mp
 ```
 from proxyChecker.proxyCheck import ProxyController
 ```
-## 1-) proxyController class must be called.
+## 2-) proxyController class must be called.
 ### prxCont = ProxyController()
 
-## 2-) The proxyControl method bound to the proxyController class must be called.
+## 3-) The proxyControl method bound to the proxyController class must be called.
 ### prxCont.proxyControl(proxys , url , timeout , details)
 
 ```
@@ -27,7 +27,7 @@ url	-> Give url to check proxy. (https-http) Default = https://www.google.com
 timeout -> Set a waiting time to connect. Default timeout = (3.05,27) >> (connect,read)
 details -> Information message about whether the proxy is working or not. (True or False) Default = True
 ```
-## 3- Output
+## 4-) Output
 ```
 prxCont = ProxyController()
 proxyList = ["0.0.0.0:18","1.1.1.1:80","11.11.11.11:8080"]
