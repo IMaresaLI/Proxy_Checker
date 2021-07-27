@@ -1,7 +1,5 @@
-from proxyDetails import proxy_Details
 import requests,colorama,time
 from colorama.ansi import Fore
-
 
 colorama.init(autoreset=True)
 
@@ -56,7 +54,7 @@ class ProxyController:
                     timeOut = (time.time() - start)
                     print(Fore.LIGHTGREEN_EX+"Protocol : %s - Connection Successfull - %s" %(protocol,proxy))
                     self.__proxysSuccess.append(proxy)
-                    print(Fore.LIGHTBLUE_EX+proxy_Details(protocol,proxy,timeOut))
+                    print(Fore.LIGHTBLUE_EX+self.__proxy_Details(protocol,proxy,timeOut))
                     break
                 except :
                     print(Fore.LIGHTRED_EX+"Protocol : %s - The connection is unstable - %s" %(protocol,proxy))
@@ -80,3 +78,13 @@ class ProxyController:
             raise Exception("The details parameter must be true or false.")
         else :
             pass
+
+    def __proxy_Details(self,protocol,proxy,timeOut):
+        getUrl = requests.get("https://ipwhois.app/json/",proxies={'https':f"{protocol}://{proxy}", "http":f"{protocol}://{proxy}"})
+        response = getUrl.json()
+        ipAddr = response["ip"]
+        proxyType = response["type"]
+        country = response["country"]
+        time_out = timeOut
+        text = f"proxyIp : {ipAddr} -- proxyType : {proxyType} -- country : {country} -- timeOut : {time_out:.2f} second"  
+        return text
