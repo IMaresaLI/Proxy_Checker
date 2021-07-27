@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="proxychecker_Mp",
-    version="0.0.2",
+    version="0.0.3",
     author="Batuhan Olgac",
     author_email="mares4l@hotmail.com",
     description="You can check the availability of the proxy.",
