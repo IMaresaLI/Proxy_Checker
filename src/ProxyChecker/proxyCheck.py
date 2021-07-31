@@ -1,7 +1,8 @@
-import requests,colorama,time
-from colorama.ansi import Fore
+import requests,time
+from syscolors.sysColors import SystemColors
 
-colorama.init(autoreset=True)
+clr = SystemColors()
+reset = clr.reset
 
 class ProxyController:
     def __init__(self):
@@ -42,8 +43,6 @@ class ProxyController:
             else :
                 return self.__proxysSuccess[0]
         
-
-
     def __proxyCheck(self, proxy, session, URL, TIMEOUT, details):
         protocols = ["http","socks4","socks5"]
         if details == True:
@@ -52,12 +51,12 @@ class ProxyController:
                     start = time.time()
                     session.get(URL, proxies={'https':f"{protocol}://{proxy}", "http":f"{protocol}://{proxy}"}, timeout=TIMEOUT,allow_redirects=True)
                     timeOut = (time.time() - start)
-                    print(Fore.LIGHTGREEN_EX+"Protocol : %s - Connection Successfull - %s" %(protocol,proxy))
+                    print(clr.setColor(40)+f"Protocol : {protocol} - Connection Successfull - {proxy}"+reset)
                     self.__proxysSuccess.append(proxy)
-                    print(Fore.LIGHTBLUE_EX+self.__proxy_Details(protocol,proxy,timeOut))
+                    print(clr.blue+self.__proxy_Details(protocol,proxy,timeOut)+reset)
                     break
                 except :
-                    print(Fore.LIGHTRED_EX+"Protocol : %s - The connection is unstable - %s" %(protocol,proxy))
+                    print(clr.red+f"Protocol : {protocol} - The connection is unstable - {proxy}"+reset )
                     continue
         else :
             for protocol in protocols:
