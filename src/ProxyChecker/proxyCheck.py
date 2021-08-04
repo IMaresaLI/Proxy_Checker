@@ -1,4 +1,4 @@
-import requests,time
+import requests,time,random
 from syscolors.sysColors import SystemColors
 
 clr = SystemColors()
@@ -7,7 +7,7 @@ reset = clr.reset
 class ProxyController:
     def __init__(self):
         self.__proxysSuccess = []
-        self.userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36'
+        self.userAgent = self.getDefaultUseragent()
 
     def proxyControl(self,proxies,url="https://www.google.com",timeout=(3.05,27),details=True):
         """You should send the proxy list you want to check.\n
@@ -27,6 +27,7 @@ class ProxyController:
         session.headers['User-Agent'] = self.userAgent
         session.max_redirects = 300
         finishedMsg = "Proxy check completed."
+
         if type(proxies) == list:
             for proxy in proxies:
                 self.__proxyCheck(proxy, session, URL, TIMEOUT, details)
@@ -43,17 +44,17 @@ class ProxyController:
             else :
                 return self.__proxysSuccess[0]
         
-    def __proxyCheck(self, proxy, session, URL, TIMEOUT, details):
+    def __proxyCheck(self, proxy, session, URL, timeout, details):
         protocols = ["http","socks4","socks5"]
         if details == True:
             for protocol in protocols:
                 try :
                     start = time.time()
-                    session.get(URL, proxies={'https':f"{protocol}://{proxy}", "http":f"{protocol}://{proxy}"}, timeout=TIMEOUT,allow_redirects=True)
+                    session.get(URL, proxies={'https':f"{protocol}://{proxy}", "http":f"{protocol}://{proxy}"}, timeout=timeout,allow_redirects=True)
                     timeOut = (time.time() - start)
                     print(clr.setColor(40)+f"Protocol : {protocol} - Connection Successfull - {proxy}"+reset)
                     self.__proxysSuccess.append(proxy)
-                    print(clr.blue+self.__proxy_Details(protocol,proxy,timeOut)+reset)
+                    print(self.__proxy_Details(protocol,proxy,timeOut)+reset)
                     break
                 except :
                     print(clr.red+f"Protocol : {protocol} - The connection is unstable - {proxy}"+reset )
@@ -61,7 +62,7 @@ class ProxyController:
         else :
             for protocol in protocols:
                 try :
-                    session.get(URL, proxies={'https':f"{protocol}://{proxy}", "http":f"{protocol}://{proxy}"}, timeout=TIMEOUT,allow_redirects=True)
+                    session.get(URL, proxies={'https':f"{protocol}://{proxy}", "http":f"{protocol}://{proxy}"}, timeout=timeout,allow_redirects=True)
                     self.__proxysSuccess.append(proxy)
                 except :
                     continue
@@ -80,10 +81,33 @@ class ProxyController:
 
     def __proxy_Details(self,protocol,proxy,timeOut):
         getUrl = requests.get("https://ipwhois.app/json/",proxies={'https':f"{protocol}://{proxy}", "http":f"{protocol}://{proxy}"})
+        
         response = getUrl.json()
-        ipAddr = response["ip"]
-        proxyType = response["type"]
-        country = response["country"]
+        ipAddr = clr.green+response["ip"]+reset
+        proxyType = clr.yellow+response["type"]+reset
+        country = clr.red+response["country"]+reset
         time_out = timeOut
-        text = f"proxyIp : {ipAddr} -- proxyType : {proxyType} -- country : {country} -- timeOut : {time_out:.2f} second"  
+        text = f"proxyIp : {ipAddr} -- proxyType : {proxyType} -- country : {country} -- timeOut : {clr.green}{time_out:.2f}sn{reset}"  
         return text
+
+    def getDefaultUseragent(self,useragent="windows"):
+        """Default Useragent Values = Windows - linux - macOs - Android - Iphone - Ipad - Ipod\n
+            Random UserAgent = Call the randomUserAgent() method for the random user agent."""
+        defaultUseragent = {
+            "Android":"Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Mobile Safari/537.36",
+            "Windows":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36",
+            "MacOS":"Mozilla/5.0 (Macintosh; Intel Mac OS X 11_5_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36",
+            "Linux":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36",
+            "Iphone":"Mozilla/5.0 (iPhone; CPU iPhone OS 14_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/92.0.4515.90 Mobile/15E148 Safari/604.1",
+            "Ipad":"Mozilla/5.0 (iPad; CPU OS 14_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/92.0.4515.90 Mobile/15E148 Safari/604.1",
+            "Ipod":"Mozilla/5.0 (iPod; CPU iPhone OS 14_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/92.0.4515.90 Mobile/15E148 Safari/604.1"}
+
+        return defaultUseragent[useragent.capitalize()]
+
+    def randomUserAgent(self):
+        """
+        randomUserAgent = Returns a random useragent when the method is called.\n
+        """
+        rnd = random.randint(0,1000)
+        with open("user-agents.txt","r",encoding="utf-8") as file :
+            return file.readlines()[rnd].strip()
