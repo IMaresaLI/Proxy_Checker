@@ -1,7 +1,6 @@
 [![proxyCheck](https://img.shields.io/pypi/v/proxyCheck-mp?style=for-the-badge)](https://pypi.org/project/proxyCheck-mp/)
 [![Python3](https://img.shields.io/pypi/pyversions/proxyCheck-mp?style=for-the-badge)](https://www.python.org/downloads/release/python-396/)
 [![proxyCheck](https://img.shields.io/github/languages/code-size/IMaresaLI/Proxy_Checker?style=for-the-badge)](https://pypi.org/project/proxyCheck-mp/)
-[![proxyCheck](https://img.shields.io/pypi/dd/proxyCheck-mp?style=for-the-badge)](https://pypi.org/project/proxyCheck-mp/)
 [![proxyCheck](https://img.shields.io/pypi/l/proxyCheck-mp?style=for-the-badge)](https://github.com/IMaresaLI/Proxy_Checker/blob/lastversion/LICENSE)
 
 # Proxy Checker Mp
@@ -28,12 +27,22 @@ prxCont = ProxyController()
 
 **Default Value ;**
 ```python
-'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36'
+getDefaultUseragent() --> "windows" 
+"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36"
 ```
 **Assigning a new value ;**
 ```python
 prxCont = ProxyController()
+#First method
 prxCont.userAgent = 'Mozilla/5.0 (Linux; U; Android 2.2) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1'
+
+#Second method
+prxCont.userAgent = getDefaultUseragent("linux") --> linux user-agent
+#Operating systems defined in the getDefaultUseragent() method. --> Windows,Linux,Macos,Android,Iphone,Ipad,Ipod
+
+#Third method
+prxCont.userAgent = randomUserAgent() --> a random user-agent
+# When this method calls, it fetches a random user agent from the thousand-element list.
 ```
 ## 3-) The proxyControl method bound to the proxyController class must be called.
 ### prxCont.proxyControl(proxys , url , timeout , details)
