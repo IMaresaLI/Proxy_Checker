@@ -1,5 +1,6 @@
 import requests,time,random
 from syscolors.sysColors import SystemColors
+from proxyChecker.userAgentData import *
 
 clr = SystemColors()
 reset = clr.reset
@@ -109,5 +110,4 @@ class ProxyController:
         randomUserAgent = Returns a random useragent when the method is called.\n
         """
         rnd = random.randint(0,1000)
-        with open("user-agents.txt","r",encoding="utf-8") as file :
-            return file.readlines()[rnd].strip()
+        return userAgentList[rnd]
