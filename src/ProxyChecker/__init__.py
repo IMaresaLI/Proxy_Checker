@@ -1,1 +1,1 @@
-from .proxyCheck import ProxyController
+from proxyChecker.proxyCheck import ProxyController
