@@ -42,7 +42,7 @@ prxCont.userAgent = getDefaultUseragent("linux") --> linux user-agent
 
 #Third method
 prxCont.userAgent = randomUserAgent() --> a random user-agent
-# When this method calls, it fetches a random user agent from the thousand-element list.
+# When this method calls, it fetches a random user agent from the Eight Thousand-element list.
 ```
 ## 3-) The proxyControl method bound to the proxyController class must be called.
 ### prxCont.proxyControl(proxys , url , timeout , details)
@@ -53,23 +53,26 @@ url	-> Give url to check proxy. (https-http) Default = https://www.google.com
 timeout -> Set a waiting time to connect. Default timeout = (3.05,27) >> (connect,read)
 details -> Information message about whether the proxy is working or not. (True or False) Default = True
 ```
-## 4-) Output - Positive
+## 4-) Output - Successfull
 ```python
 prxCont = ProxyController()
-proxy = '52.143.130.19:3128'
+prxCont.userAgent = prxCont.randomUserAgent()
+proxy = "125.99.157.238:5678"
 print(prxCont.proxyControl(proxy))
-#output _> 
-	Protocol : http - Connection Successfull - 52.143.130.19:3128
-	proxyIp : 52.143.130.19 -- proxyType : IPv4 -- country : France -- timeOut : 0.43 second
-	Proxy check completed.
-	52.143.130.19:3128
 
+#output _> 
+	Protocol : socks4 - Connection Successfull - 125.99.157.238:5678
+	ProxyIp : 125.99.157.238 -- ProxyType : IPv4 -- Country : India -- Region : Telangana -- AvagereTimeOut : 2.07sn
+	Your User-Agent = Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; en-US) AppleWebKit/534.13 (KHTML, like Gecko) RockMelt/0.9.48.59 Chrome/9.0.597.107 Safari/534.13
+	Proxy check completed.
+	125.99.157.238:5678
+	
 print(prxCont.proxyControl(proxyList,detail=False))
 #output2 _>
 	Proxy check completed.
 	52.143.130.19:3128
 ```
-## 4-) Output - Negative
+## 4-) Output - UnSuccessful
 ```python
 prxCont = ProxyController()
 proxyList = ["0.0.0.0:18","1.1.1.1:80","11.11.11.11:8080"]
