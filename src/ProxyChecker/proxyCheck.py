@@ -58,7 +58,7 @@ class ProxyController:
                     print(self.__proxy_Details(protocol,proxy,timeOut)+reset)
                     break
                 except :
-                    print(clr.red+f"Protocol : {protocol} - The connection is unstable - {proxy}"+reset )
+                    print(clr.red+f"Protocol : {protocol} - The connection is unstable - {proxy}"+reset)
                     continue
         else :
             for protocol in protocols:
@@ -81,14 +81,24 @@ class ProxyController:
             pass
 
     def __proxy_Details(self,protocol,proxy,timeOut):
-        getUrl = requests.get("https://ipwhois.app/json/",proxies={'https':f"{protocol}://{proxy}", "http":f"{protocol}://{proxy}"})
-        
+        start = time.time()
+        session = requests.Session()
+        session.headers['User-Agent'] = self.userAgent
+        session.max_redirects = 300
+        getUrl = session.get("https://ipwhois.app/json/",proxies={'https':f"{protocol}://{proxy}", "http":f"{protocol}://{proxy}"},timeout=(3.05,10))
         response = getUrl.json()
         ipAddr = clr.green+response["ip"]+reset
-        proxyType = clr.yellow+response["type"]+reset
-        country = clr.red+response["country"]+reset
-        time_out = timeOut
-        text = f"proxyIp : {ipAddr} -- proxyType : {proxyType} -- country : {country} -- timeOut : {clr.green}{time_out:.2f}sn{reset}"  
+        proxyType = clr.setColor(184)+response["type"]+reset
+        country = clr.setColor(208)+response["country"]+reset
+        region = clr.setColor(208)+response["region"]+reset
+        userAgentGet = session.get("http://whatsmyuseragent.org/",proxies={'https':f"{protocol}://{proxy}", "http":f"{protocol}://{proxy}"},timeout=(3.05,10))
+        userAgent = clr.setColor(39)+(userAgentGet.text).split("<p")[1].split("</p>")[0].split('>')[1].strip()+reset
+        time_out = ((time.time() - start) + timeOut) / 3
+        if time_out <= 50:
+            color = clr.setColor(112)
+        else :
+            color = clr.red
+        text = f"ProxyIp : {ipAddr} -- ProxyType : {proxyType} -- Country : {country} -- Region : {region} -- AvagereTimeOut : {color}{time_out:.2f}sn{reset}\nYour User-Agent = {userAgent}"  
         return text
 
     def getDefaultUseragent(self,useragent="windows"):
@@ -109,5 +119,5 @@ class ProxyController:
         """
         randomUserAgent = Returns a random useragent when the method is called.\n
         """
-        rnd = random.randint(0,1000)
+        rnd = random.randint(0,8480)
         return userAgentList[rnd]
