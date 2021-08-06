@@ -70,7 +70,7 @@ print(prxCont.proxyControl(proxy))
 print(prxCont.proxyControl(proxyList,detail=False))
 #output2 _>
 	Proxy check completed.
-	52.143.130.19:3128
+	125.99.157.238:5678
 ```
 ## 4-) Output - UnSuccessful
 ```python
