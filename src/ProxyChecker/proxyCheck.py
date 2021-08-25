@@ -120,4 +120,4 @@ class ProxyController:
         randomUserAgent = Returns a random useragent when the method is called.\n
         """
         rnd = random.choice(userAgentList)
-        return [rnd]
+        return rnd
