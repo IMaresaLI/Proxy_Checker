@@ -72,7 +72,7 @@ print(prxCont.proxyControl(proxyList,detail=False))
 	Proxy check completed.
 	125.99.157.238:5678
 ```
-## 4-) Output - UnSuccessful
+## 4-) Output - UnSuccessfull
 ```python
 prxCont = ProxyController()
 proxyList = ["0.0.0.0:18","1.1.1.1:80","11.11.11.11:8080"]
