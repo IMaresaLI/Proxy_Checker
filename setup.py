@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="proxyCheck_mp",
-    version="0.0.7",
+    version="0.0.8",
     author="Batuhan Olgac",
     author_email="mares4l@hotmail.com",
     description="You can check the availability of the proxy.",
@@ -28,6 +28,7 @@ setuptools.setup(
         "Operating System :: POSIX",
         "Operating System :: Microsoft :: Windows",
     ],
+    install_requires = ["requests","requests[socks]","syscolors"],
     package_dir={"": "src"},
     packages=setuptools.find_packages(where="src"),
     python_requires=">=3",
