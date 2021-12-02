@@ -17,7 +17,7 @@ pip3 install proxyCheck-mp
 ```
 - **Import Module**
 ```python
-from proxyCheck import ProxyController
+from proxyChecker import ProxyController
 ```
 ## 2-) proxyController class must be called.
 ```python
