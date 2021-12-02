@@ -27,19 +27,19 @@ class ProxyController:
         session = requests.Session()
         session.headers['User-Agent'] = self.userAgent
         session.max_redirects = 300
-        finishedMsg = "Proxy check completed."
+        finishedMsg = "check completed."
 
         if type(proxies) == list:
             for proxy in proxies:
                 self.__proxyCheck(proxy, session, URL, TIMEOUT, details)
-            print(finishedMsg)
+            print("Proxies "+finishedMsg)
             if len(self.__proxysSuccess) == 0 :
                 print("None of the proxies you provided are working.")
             else :
                 return self.__proxysSuccess
         elif type(proxies) == str:
             self.__proxyCheck(proxies, session, URL, TIMEOUT, details)
-            print(finishedMsg)
+            print("Proxy "+finishedMsg)
             if len(self.__proxysSuccess) == 0 :
                 print("Proxy address not working.")
             else :
@@ -53,13 +53,13 @@ class ProxyController:
                     start = time.time()
                     session.get(URL, proxies={'https':f"{protocol}://{proxy}", "http":f"{protocol}://{proxy}"}, timeout=timeout,allow_redirects=True)
                     timeOut = (time.time() - start)
+                    print(self.__proxy_Details(protocol,proxy,timeOut)+reset)
                     print(clr.setColor(40)+f"Protocol : {protocol} - Connection Successfull - {proxy}"+reset)
                     self.__proxysSuccess.append(proxy)
-                    print(self.__proxy_Details(protocol,proxy,timeOut)+reset)
                     break
-                except :
+                except:
                     print(clr.red+f"Protocol : {protocol} - The connection is unstable - {proxy}"+reset)
-                    continue
+                    
         else :
             for protocol in protocols:
                 try :
