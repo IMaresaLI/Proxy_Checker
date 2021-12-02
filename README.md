@@ -17,7 +17,7 @@ pip3 install proxyCheck-mp
 ```
 - **Import Module**
 ```python
-from proxyChecker.proxyCheck import ProxyController
+from proxyCheck import ProxyController
 ```
 ## 2-) proxyController class must be called.
 ```python
@@ -57,6 +57,8 @@ details -> Information message about whether the proxy is working or not. (True 
 ```python
 prxCont = ProxyController()
 prxCont.userAgent = prxCont.randomUserAgent()
+
+# Singular
 proxy = "125.99.157.238:5678"
 print(prxCont.proxyControl(proxy))
 
@@ -71,8 +73,41 @@ print(prxCont.proxyControl(proxyList,detail=False))
 #output2 _>
 	Proxy check completed.
 	125.99.157.238:5678
+
+# Multiple
+proxies = ["37.238.136.12:5678","158.69.225.124:2021","64.235.204.107:8080","148.72.65.230:37704","20.47.108.204:8888"]
+print(prxCont.proxyControl(proxies))
+
+#output _> 
+	Protocol : http - The connection is unstable - 37.238.136.12:5678
+	ProxyIp : 37.238.136.12 -- ProxyType : IPv4 -- Country : Iraq -- Region : Baghdad Governorate -- AvagereTimeOut : 1.97sn
+	Your User-Agent = Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36
+	Protocol : socks4 - Connection Successfull - 37.238.136.12:5678
+	Protocol : http - The connection is unstable - 158.69.225.124:2021
+	ProxyIp : 158.69.225.124 -- ProxyType : IPv4 -- Country : Canada -- Region : Québec -- AvagereTimeOut : 17.56sn
+	Your User-Agent = Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36
+	Protocol : socks4 - Connection Successfull - 158.69.225.124:2021
+	Protocol : http - The connection is unstable - 64.235.204.107:8080
+	Protocol : socks4 - The connection is unstable - 64.235.204.107:8080
+	Protocol : socks5 - The connection is unstable - 64.235.204.107:8080
+	Protocol : http - The connection is unstable - 148.72.65.230:37704
+	ProxyIp : 148.72.65.230 -- ProxyType : IPv4 -- Country : United States -- Region : Virginia -- AvagereTimeOut : 2.68sn
+	Your User-Agent = Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36
+	Protocol : socks4 - Connection Successfull - 148.72.65.230:37704
+	ProxyIp : 52.188.146.128 -- ProxyType : IPv4 -- Country : United States -- Region : Virginia -- AvagereTimeOut : 1.09sn
+	Your User-Agent = Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36
+	Protocol : http - Connection Successfull - 20.47.108.204:8888
+
+	Proxy check completed.
+	['37.238.136.12:5678','125.99.157.238:5678','148.72.65.230:37704','20.47.108.204:8888']
+	
+print(prxCont.proxyControl(proxyList,detail=False))
+#output2 _>
+	Proxy check completed.
+	['37.238.136.12:5678','125.99.157.238:5678','148.72.65.230:37704','20.47.108.204:8888']
+
 ```
-## 4-) Output - UnSuccessfull
+## 4-) Output - UnSuccessful
 ```python
 prxCont = ProxyController()
 proxyList = ["0.0.0.0:18","1.1.1.1:80","11.11.11.11:8080"]
