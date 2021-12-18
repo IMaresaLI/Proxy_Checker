@@ -44,7 +44,7 @@ prxCont.userAgent = getDefaultUseragent("linux") --> linux user-agent
 prxCont.userAgent = randomUserAgent() --> a random user-agent
 # When this method calls, it fetches a random user agent from the Eight Thousand-element list.
 ```
-## 3-) The proxyControl method bound to the proxyController class must be called.
+## 4-) The proxyControl method bound to the proxyController class must be called.
 ### prxCont.proxyControl(proxys , url , timeout , details)
 ```
 Parameter Details ;
@@ -53,7 +53,7 @@ url	-> Give url to check proxy. (https-http) Default = https://www.google.com
 timeout -> Set a waiting time to connect. Default timeout = (3.05,27) >> (connect,read)
 details -> Information message about whether the proxy is working or not. (True or False) Default = True
 ```
-## 4-) Output - Successfull
+## 5-) Output - Successfull
 ```python
 prxCont = ProxyController()
 prxCont.userAgent = prxCont.randomUserAgent()
@@ -107,7 +107,7 @@ print(prxCont.proxyControl(proxyList,detail=False))
 	['37.238.136.12:5678','125.99.157.238:5678','148.72.65.230:37704','20.47.108.204:8888']
 
 ```
-## 4-) Output - UnSuccessful
+## 6-) Output - UnSuccessful
 ```python
 prxCont = ProxyController()
 proxyList = ["0.0.0.0:18","1.1.1.1:80","11.11.11.11:8080"]
