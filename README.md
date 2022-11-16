@@ -44,7 +44,7 @@ prxCont.userAgent = getDefaultUseragent("linux") --> linux user-agent
 prxCont.userAgent = randomUserAgent() --> a random user-agent
 # When this method calls, it fetches a random user agent from the Eight Thousand-element list.
 ```
-## 4-) The proxyControl method bound to the proxyController class must be called.
+## 3-) The proxyControl method bound to the proxyController class must be called.
 ### prxCont.proxyControl(proxys , url , timeout , max_redirects, details)
 ```
 Parameter Details ;
@@ -54,7 +54,7 @@ timeout -> Set a waiting time to connect. Default timeout = (3.05,27) >> (connec
 max_redirects -> Determines whether redirects are used. Default max_redirects = (False,300) >> (use,value)
 details -> Information message about whether the proxy is working or not. (True or False) Default = True
 ```
-## 5-) Output - Successfull
+## 4-) Output - Successfull
 ```python
 prxCont = ProxyController()
 prxCont.userAgent = prxCont.randomUserAgent()
@@ -102,7 +102,7 @@ print(responce)
 	[{'Proxy': '178.48.68.61:4145', 'ProxyType': 'IPv4', 'Protocol': 'socks4', 'Country': 'Hungary', 'Region': 'Western Transdanubia', 'AvagereTimeOut': 0.8949407736460367, 'Color': '\x1b[38;5;112m', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36'}, {'Proxy': '181.215.178.39:1337', 'ProxyType': 'IPv4', 'Protocol': 'http', 'Country': 'United Arab Emirates', 'Region': 'Abu Dhabi Emirate', 'AvagereTimeOut': 0.6718703111012777, 'Color': '\x1b[38;5;112m', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36'}]
 
 ```
-## 6-) Output - UnSuccessful
+## 4-) Output - UnSuccessful
 ```python
 prxCont = ProxyController()
 proxies = ["0.0.0.0:18","1.1.1.1:80","11.11.11.11:8080"]
