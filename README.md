@@ -1,7 +1,9 @@
 [![proxyCheck](https://img.shields.io/pypi/v/proxyCheck-mp?style=for-the-badge)](https://pypi.org/project/proxyCheck-mp/)
 [![Python3](https://img.shields.io/pypi/pyversions/proxyCheck-mp?style=for-the-badge)](https://www.python.org/downloads/release/python-396/)
 [![proxyCheck](https://img.shields.io/github/languages/code-size/IMaresaLI/Proxy_Checker?style=for-the-badge)](https://pypi.org/project/proxyCheck-mp/)
+[![proxyCheck](https://img.shields.io/pypi/dm/proxyCheck-mp?style=for-the-badge)](https://pypi.org/project/proxyCheck-mp/)
 [![proxyCheck](https://img.shields.io/pypi/l/proxyCheck-mp?style=for-the-badge)](https://github.com/IMaresaLI/Proxy_Checker/blob/lastversion/LICENSE)
+
 
 # Proxy Checker Mp
 
@@ -119,4 +121,5 @@ responce = prxCont.proxyControl(proxies,details=False)
 print(responce)
 #output2 _>
 	None
+
 ```
